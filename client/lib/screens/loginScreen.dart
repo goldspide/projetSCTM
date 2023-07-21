@@ -1,4 +1,6 @@
-import 'package:client/screens/Dashboard.dart';
+// import 'package:client/screens/dashboard.dart';
+import 'package:client/screens/side_bar.dart';
+// import 'package:client/screens/side_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -68,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                               __,
                               ___,
                             ) =>
-                                    const DashBoard()));
+                                    const SideBar()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(

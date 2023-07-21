@@ -1,4 +1,5 @@
-import 'package:client/screens/Dashboard.dart';
+import 'package:client/screens/dashboard.dart';
+import 'package:client/screens/side_bar.dart';
 import 'package:client/screens/loginScreen.dart';
 import 'package:flutter/material.dart';
 
