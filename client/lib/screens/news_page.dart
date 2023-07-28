@@ -1,3 +1,6 @@
+import 'package:client/screens/create_agence.dart';
+import 'package:client/screens/dashboard.dart';
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,16 +11,13 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Journal'),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 2,),
               Container(
-                height: size.height * 0.42,
-                color: Colors.amber,
+                height: size.height * 0.3,
+                color: AppColors.BackOrangeColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -205,124 +205,7 @@ class NewsPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  Semestre 1X')],
-                                ),
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(width: 2,),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  Semestre 2X')],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  Bastos')],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  < 2021')],
-                                ),
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(width: 2,),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  <2000')],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text('  Par sexe')],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -337,7 +220,6 @@ class NewsPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text('RECHERCHE',style: GoogleFonts.ubuntu(fontWeight: FontWeight.bold,color: Colors.white),)
-
                             ],
                           ),
                         ),
@@ -462,12 +344,12 @@ class NewsPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding:
-                      const EdgeInsets.only(top: 2.0, left: 12),
+                      const EdgeInsets.only(top: 2.0, left: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Filter by Evenement',
+                            'ordered by Evenement',
                             style: GoogleFonts.ubuntu(
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold,
@@ -522,7 +404,7 @@ class NewsPage extends StatelessWidget {
                               const SizedBox(
                                 width: 16,
                               ),
-                              Text('Date Creation',
+                              Text('Date d\' envoie',
                                   style: GoogleFonts.ubuntu(
                                       fontWeight: FontWeight.bold,
                                   fontSize: 18)),
@@ -541,7 +423,7 @@ class NewsPage extends StatelessWidget {
                   height: size.height * 0.05,
                   width: size.width * 1,
                   decoration: BoxDecoration(
-                      color: Colors.amber,
+                      color: AppColors.BackOrangeColor,
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -574,7 +456,17 @@ class NewsPage extends StatelessWidget {
             ],
           ),
 
-        ));
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CreateAgence()),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
 

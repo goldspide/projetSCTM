@@ -38,6 +38,7 @@ dependencies:
   google_fonts:
   d_chart: ^2.3.0
   circular_chart_flutter: ^0.0.2
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -62,9 +63,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-    - assets/images/logo.jpg
-    - assets/images/profile.jpeg
+  assets:
+     - assets/images/logo.jpg
+     - assets/images/profil.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

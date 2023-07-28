@@ -6,6 +6,7 @@ import 'package:client/screens/dashboard.dart';
 import 'package:client/screens/event_page.dart';
 import 'package:client/screens/my_drawer_header.dart';
 import 'package:client/screens/news_page.dart';
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
@@ -34,12 +35,20 @@ class _SideBarState extends State<SideBar> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: AppColors.BackBlueColor,
         title: const Text('Welcome'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications,color: Colors.black,size: 30,)),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child:  CircleAvatar(backgroundImage: AssetImage('assets/images/profil.jpeg'),),
+          )
+        ],
       ),
       body: container,
       drawer: Drawer(
+        backgroundColor: AppColors.BackOrangeColor,
         child: SingleChildScrollView(
           child: Container(
               child: Column(
@@ -55,7 +64,7 @@ class _SideBarState extends State<SideBar> {
 
   Widget MyDrawerList() {
     return Container(
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 15),color: AppColors.BackOrangeColor,
       child: Column(
         children: [
           menuItem(1, 'DashBoard', Icons.dashboard,
@@ -75,7 +84,7 @@ class _SideBarState extends State<SideBar> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
-      color: selected ? Colors.blue : Colors.white,
+      color: selected ? Colors.blue : AppColors.BackOrangeColor,
       child: InkWell(
         onTap: () {
           Navigator.pop(context);

@@ -1,4 +1,5 @@
 import 'package:client/screens/loginScreen.dart';
+import 'package:client/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,23 +23,35 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.BackBlueColor,
       body: Center(
         child: SizedBox(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 100,
               ),
-              Center(
-                child: Image.asset(
-                  "assets/images/logo.jpg",
-                  width: 120,
-                  height: 120,
-                  color: Colors.cyan,
-                ),
-              ),
+          Container(
+
+            width: double.infinity,
+            height: 200,
+            padding: const EdgeInsets.only(top: 20.0),
+            decoration: const BoxDecoration(
+              image: DecorationImage(image: AssetImage('assets/images/logo.jpg'),fit: BoxFit.contain,),
+              color: AppColors.BackBlueColor,
+            ),
+          ),
+              // Center(
+              //   child: Image.asset(
+              //     "assets/images/logo.jpg",
+              //     width: 120,
+              //     height: 120,
+              //     color: Colors.cyan,
+              //   ),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -52,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
               Container(
                 padding: const EdgeInsets.only(top: 270),
-                child: const Text(" App version 1.0 Experimental"),
+                child: const Text(" Fabrication bouteilles de gaz, tout \n emboutissage, distribution gaz domestique,\n equipement metallique",style: TextStyle(fontWeight: FontWeight.bold,),),
               )
             ],
           ),
