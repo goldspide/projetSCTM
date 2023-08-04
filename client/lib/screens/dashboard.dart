@@ -8,6 +8,7 @@ import 'package:client/utils/colors.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -17,9 +18,64 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  late List<GDPData> _chartData;
+  late List<GDPData> _chartData1;
+  late List<GDPData> _chartData2;
+  late List<GDPBarData> _chartBar;
+  late TooltipBehavior _tooltipBehavior;
   @override
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   var currentPage = DrawerSections.dashboard;
+  bool isVisible = true;
+  bool isVisible1 = true;
+  bool isVisible2 = true;
+  bool isPressed = false;
+  bool isPressed1 = false;
+  bool isPressed2 = false;
+  bool isPressed3 = false;
+  bool isPressed4 = false;
+  bool isPressed5 = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _chartData = getChartData();
+    _chartData1 = getChartData1();
+    _chartData2 = getChartData2();
+    _chartBar = getChartBarData();
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    isPressed1 = true;
+    isPressed2 = true;
+    isPressed3 = true;
+    isPressed4 = true;
+    isVisible = true;
+    isVisible1 = false;
+    isVisible2 = false;
+  }
+
+  final clients = [
+    {
+      'evenement': 'fete du traveil',
+      'date': '01-01-2023',
+      'notification': 'bonne detef',
+    },
+    {
+      'evenement': 'nouvelle ans',
+      'date': '01-01-2023',
+      'notification': 'paul',
+    },
+    {
+      'evenement': 'tabaski',
+      'date': '01-01-2023',
+      'notification': 'paul',
+    },
+    {
+      'evenement': 'noel',
+      'date': '01-01-2023',
+      'notification': 'paul',
+    },
+  ];
 
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -72,7 +128,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.24,
+                          height: size.height * 0.489,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -93,6 +149,7 @@ class _DashBoardState extends State<DashBoard> {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16),
                                     ),
+
                                     // const SizedBox(
                                     //   width: 1,
                                     // ),
@@ -108,76 +165,159 @@ class _DashBoardState extends State<DashBoard> {
                                 ),
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AnimatedCircularChart(
-                                    size: _size,
-                                    initialChartData: const <CircularStackEntry>[
-                                      CircularStackEntry(
-                                        <CircularSegmentEntry>[
-                                          CircularSegmentEntry(
-                                              20.00, AppColors.OrangColor,
-                                              rankKey: 'completed'),
-                                          CircularSegmentEntry(
-                                              80.00, AppColors.BlueColor,
-                                              rankKey: 'Remaining'),
-                                        ],
-                                        rankKey: 'progress',
-                                      ),
-                                    ],
-                                    chartType: CircularChartType.Radial,
-                                    percentageValues: true,
-                                    holeLabel: '  200 \nTotal',
-                                    labelStyle: GoogleFonts.ubuntu(
-                                      color: AppColors.OrangColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isVisible1 = !isVisible1;
+                                          isVisible = false;
+                                          isVisible2 = false;
+                                          isPressed = true;
+                                          isPressed2 = true;
+                                          isPressed1 = !isPressed1;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: isPressed1
+                                              ? AppColors.BackOrangeColor
+                                              : Colors.blue,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16))),
+                                          minimumSize: const Size(90, 32)),
+                                      child: const Text(
+                                        'Homme',
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isVisible2 = !isVisible2;
+                                          isVisible1 = false;
+                                          isVisible = false;
+                                          isPressed2 = !isPressed2;
+                                          isPressed = true;
+                                          isPressed1 = true;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: isPressed2
+                                              ? AppColors.BackOrangeColor
+                                              : Colors.blue,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16))),
+                                          minimumSize: const Size(90, 32)),
+                                      child: const Text(
+                                        'Femme',
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isVisible = !isVisible;
+                                          isVisible1 = false;
+                                          isVisible2 = false;
+                                          isPressed1 = true;
+                                          isPressed = !isPressed;
+                                          isPressed2 = true;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: isPressed
+                                              ? AppColors.BackOrangeColor
+                                              : Colors.blue,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16))),
+                                          minimumSize: const Size(90, 32)),
+                                      child: const Text(
+                                        'Tous',
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                ],
+                              ),
+                              Stack(
+                                children: [
+                                  Visibility(
+                                    visible: isVisible,
+                                    child: SfCircularChart(
+                                      borderWidth: 2,
+                                      legend: const Legend(
+                                          isVisible: true,
+                                          overflowMode:
+                                              LegendItemOverflowMode.wrap),
+                                      tooltipBehavior: _tooltipBehavior,
+                                      series: <CircularSeries>[
+                                        PieSeries<GDPData, String>(
+                                          dataSource: _chartData,
+                                          xValueMapper: (GDPData data, _) =>
+                                              data.continent,
+                                          yValueMapper: (GDPData data, _) =>
+                                              data.gdp,
+                                          dataLabelSettings:
+                                              const DataLabelSettings(
+                                                  isVisible: true),
+                                          enableTooltip: true,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 10.0, left: 8.0),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              height: 12,
-                                              width: 12,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                  color: AppColors.OrangColor),
-                                            ),
-                                            const Text(
-                                                '  Nombre D\'Homme Actif  120'),
-                                          ],
+                                  Visibility(
+                                    visible: isVisible1,
+                                    child: SfCircularChart(
+                                      borderWidth: 2,
+                                      legend: const Legend(
+                                          isVisible: true,
+                                          overflowMode:
+                                              LegendItemOverflowMode.wrap),
+                                      tooltipBehavior: _tooltipBehavior,
+                                      series: <CircularSeries>[
+                                        PieSeries<GDPData, String>(
+                                          dataSource: _chartData1,
+                                          xValueMapper: (GDPData data, _) =>
+                                              data.continent,
+                                          yValueMapper: (GDPData data, _) =>
+                                              data.gdp,
+                                          dataLabelSettings:
+                                              const DataLabelSettings(
+                                                  isVisible: true),
+                                          enableTooltip: true,
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 10.0, left: 8.0),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              height: 12,
-                                              width: 12,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                  color: AppColors.BlueColor),
-                                            ),
-                                            const Text(
-                                                '  Nombre De Femme Actif 120'),
-                                          ],
+                                      ],
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: isVisible2,
+                                    child: SfCircularChart(
+                                      borderWidth: 2,
+                                      legend: const Legend(
+                                          isVisible: true,
+                                          overflowMode:
+                                              LegendItemOverflowMode.wrap),
+                                      tooltipBehavior: _tooltipBehavior,
+                                      series: <CircularSeries>[
+                                        PieSeries<GDPData, String>(
+
+                                          dataSource: _chartData2,
+                                          xValueMapper: (GDPData data, _) =>
+                                              data.continent,
+                                          yValueMapper: (GDPData data, _) =>
+                                              data.gdp,
+                                          dataLabelSettings:
+                                              const DataLabelSettings(
+                                                  isVisible: true),
+                                          enableTooltip: true,
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -322,7 +462,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.24,
+                          height: size.height * 0.5,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -352,10 +492,119 @@ class _DashBoardState extends State<DashBoard> {
                                         size: 30,
                                         color: Colors.blue,
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
+
+                              SingleChildScrollView(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                            isPressed4 = true;
+                                            isPressed3 = !isPressed3;
+                                            isPressed5 = true;
+                                          });
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: isPressed3
+                                                ? AppColors.BackOrangeColor
+                                                : Colors.blue,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16))),
+                                            minimumSize: const Size(90, 32)),
+                                        child: const Text(
+                                          'Semestres',
+                                          style: TextStyle(color: Colors.black),
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                            isPressed5 = true;
+                                            isPressed3 = true;
+                                            isPressed4 = !isPressed4;
+                                          });
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: isPressed4
+                                                ? AppColors.BackOrangeColor
+                                                : Colors.blue,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16))),
+                                            minimumSize: const Size(90, 32)),
+                                        child: const Text(
+                                          'Trimestre',
+                                          style: TextStyle(color: Colors.black),
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                            isPressed5 = !isPressed5;
+                                            isPressed4 = true;
+                                            isPressed3 = true;
+                                          });
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: isPressed5
+                                                ? AppColors.BackOrangeColor
+                                                : Colors.blue,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16))),
+                                            minimumSize: const Size(90, 32)),
+                                        child: const Text(
+                                          'Mois',
+                                          style: TextStyle(color: Colors.black),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                              // Expanded(
+                              //     child: Container(
+                              //   color: Colors.yellow,
+                              // ))
+                              Visibility(
+                                  visible: isVisible,
+                                  child: SfCartesianChart(
+                                    // legend: const Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap),
+                                    tooltipBehavior: _tooltipBehavior,
+                                    primaryXAxis: CategoryAxis(),
+                                    series: <CartesianSeries>[
+                                      ColumnSeries<GDPBarData, String>(
+                                        dataLabelSettings: const DataLabelSettings(isVisible: true),
+                                          enableTooltip: true,
+                                          dataSource: _chartBar,
+                                          xValueMapper: (GDPBarData data, _) =>
+                                              data.month,
+                                          yValueMapper: (GDPBarData data, _) =>
+                                              data.Homme),
+
+                                      ColumnSeries<GDPBarData, String>(
+                                          dataLabelSettings: const DataLabelSettings(isVisible: true,),
+                                          color: AppColors.BackOrangeColor,
+                                          dataSource: _chartBar,
+                                          xValueMapper: (GDPBarData data, _) =>
+                                          data.month,
+                                          yValueMapper: (GDPBarData data, _) =>
+                                          data.Femme),
+
+
+                                    ],
+                                  )),
                             ],
                           ),
                         ),
@@ -366,7 +615,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.6,
+                          height: size.height * 0.45,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -381,7 +630,7 @@ class _DashBoardState extends State<DashBoard> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'EVENEMENTS DU MOIS- SEPTEMBRE',
+                                      'EVENEMENTS DU MOIS',
                                       style: GoogleFonts.ubuntu(
                                           color: Colors.blue,
                                           fontWeight: FontWeight.bold,
@@ -463,46 +712,102 @@ class _DashBoardState extends State<DashBoard> {
                                   ),
                                 ),
                               ),
-                              for (int i = 0; i <= 7; i++)
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    margin: const EdgeInsets.only(left: 0),
-                                    height: size.height * 0.03,
-                                    width: size.width * 1,
-                                    decoration: BoxDecoration(
-                                        color: AppColors.BackBlueColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0, top: 8),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            '02/05/23',
-                                            style: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.bold),
+                              Container(
+                                height: _size.height * 2.1,
+                                decoration: const BoxDecoration(
+                                    color: AppColors.BackBlueColor),
+                                child: ListView.builder(
+                                    itemCount: clients.length,
+                                    itemBuilder: (context, index) {
+                                      final val = clients[index];
+                                      final client = val['evenement'];
+                                      final date = val['date'];
+
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return SizedBox(
+                                                    height: 400,
+                                                    child: Column(
+                                                      children: [
+                                                        const Text("Nom"),
+                                                        Text('$client'),
+                                                        const Text(
+                                                            'Date de naissance'),
+                                                        Text('$date')
+                                                      ],
+                                                    ),
+                                                  );
+                                                });
+                                          },
+                                          child: Container(
+                                            height: size.height * 0.05,
+                                            width: size.width * 1,
+                                            decoration: BoxDecoration(
+                                                color:
+                                                    AppColors.BackOrangeColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0,
+                                                  right: 25.0,
+                                                  top: 2),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 2.0),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          '$date',
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontSize: 18),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 40,
+                                                        ),
+                                                        Text('$client',
+                                                            style: GoogleFonts.ubuntu(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontSize: 18)),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  // const SizedBox(
+                                                  //   width: 5,
+                                                  // ),
+
+                                                  IconButton(
+                                                      onPressed: () {},
+                                                      icon: const Icon(
+                                                          Icons.menu))
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            width: 0,
-                                          ),
-                                          Text('Anniversaire',
-                                              style: GoogleFonts.ubuntu(
-                                                  fontWeight: FontWeight.bold)),
-                                          const SizedBox(
-                                            width: 24,
-                                          ),
-                                          IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                )
+                                        ),
+                                      );
+                                    }),
+                              ),
                             ],
                           ),
                         ),
@@ -635,6 +940,65 @@ class _DashBoardState extends State<DashBoard> {
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context){
+  //   return SafeArea(child: Scaffold(body: SfCircularChart(),));
+  // }
+  List<GDPData> getChartData() {
+    final List<GDPData> chartData = [
+      GDPData('Homme Actif', 25),
+      GDPData('Femme Actif', 60),
+    ];
+    return chartData;
+  }
+
+  List<GDPData> getChartData1() {
+    final List<GDPData> chartData = [
+      GDPData('Homme Actif', 36),
+      GDPData('Homme Total', 60),
+    ];
+    return chartData;
+  }
+
+  List<GDPData> getChartData2() {
+    final List<GDPData> chartData = [
+      GDPData('Femme Actif', 50),
+      GDPData('Femme Total', 60),
+    ];
+    return chartData;
+  }
+
+  List<GDPBarData> getChartBarData() {
+    final List<GDPBarData> barData = [
+      GDPBarData('Jan', 25, 70),
+      GDPBarData('Feb', 56, 40),
+      GDPBarData('Mar', 41, 30),
+      GDPBarData('Avr', 66, 22),
+      GDPBarData('Mai', 35, 56),
+      GDPBarData('Jun', 45, 25),
+      GDPBarData('Jul', 12, 41),
+      GDPBarData('Aou', 26, 25),
+      GDPBarData('Sep', 46, 36),
+      GDPBarData('Oct', 35, 56),
+      GDPBarData('Nov', 22, 62),
+      GDPBarData('Dec', 58, 13),
+    ];
+    return barData;
+  }
+}
+
+class GDPData {
+  GDPData(this.continent, this.gdp);
+  final String continent;
+  final int gdp;
+}
+
+class GDPBarData {
+  GDPBarData(this.month, this.Homme, this.Femme);
+  final String month;
+  final double Homme;
+  final double Femme;
 }
 
 enum DrawerSections { dashboard, client, evenement, journal, agence }

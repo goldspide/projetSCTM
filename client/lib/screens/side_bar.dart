@@ -36,7 +36,7 @@ class _SideBarState extends State<SideBar> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.BackBlueColor,
-        title: const Text('Welcome'),
+        title: const Text('SCTM'),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.notifications,color: Colors.black,size: 30,)),

@@ -1,12 +1,62 @@
 import 'package:circular_chart_flutter/circular_chart_flutter.dart';
+import 'package:client/screens/create_client.dart';
 import 'package:client/screens/dashboard.dart';
 import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ClientPage extends StatelessWidget {
+class ClientPage extends StatefulWidget {
   const ClientPage({super.key});
 
+  @override
+  State<ClientPage> createState() => _ClientPageState();
+}
+
+class _ClientPageState extends State<ClientPage> {
+  final clients = [
+    {
+      'nom': 'paul',
+      'prenom': 'paul',
+      'sexe': 'paul',
+      'quartier': 'paul',
+      'ville': 'paul',
+      'date_de_naissance': '01-01-2023'
+    },
+    {
+      'nom': 'paul',
+      'prenom': 'paul',
+      'sexe': 'paul',
+      'quartier': 'paul',
+      'ville': 'paul',
+      'date_de_naissance': '01-01-2023'
+    },
+    {
+      'nom': 'paul',
+      'prenom': 'paul',
+      'sexe': 'paul',
+      'quartier': 'paul',
+      'ville': 'paul',
+      'date_de_naissance': '01-01-2023'
+    },
+    {
+      'nom': 'paul',
+      'prenom': 'paul',
+      'sexe': 'paul',
+      'quartier': 'paul',
+      'ville': 'paul',
+      'date_de_naissance': '01-01-2023'
+    },
+    {
+      'nom': 'paul',
+      'prenom': 'paul',
+      'sexe': 'paul',
+      'quartier': 'paul',
+      'ville': 'paul',
+      'date_de_naissance': '01-01-2023'
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -15,34 +65,45 @@ class ClientPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Text(
-            //   'Client',
-            //   style: GoogleFonts.ubuntu(
-            //       color: Colors.blueAccent,
-            //       fontSize: 30,
-            //       fontWeight: FontWeight.bold),
-            // ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0, top: 8),
+              child: Container(
+                // color: Colors.yellow,
+                width: size.width,
+                child: Text(
+                  'Gestion Des Client',
+                  style: GoogleFonts.ubuntu(
+                      color: Colors.blueAccent,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
             const SizedBox(
-              height: 10,
+              height: 1,
             ),
             Container(
-              height: size.height * 0.3,
-              width: size.width,
-              color: AppColors.BackOrangeColor,
+              height: size.height * 0.3 ,
+              width: size.width * 0.95,
+              decoration: BoxDecoration(
+                  color: AppColors.BackOrangeColor,
+                  borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 155,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -55,12 +116,15 @@ class ClientPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           // const SizedBox(width: 2,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 155,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -103,39 +167,15 @@ class ClientPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           // const SizedBox(width: 2,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
                               width: 150,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.folder),
-                                    Text(' categorie')
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 40,
-                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -145,28 +185,7 @@ class ClientPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Icon(Icons.calendar_month),
-                                    Text('  Date fin')
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(width: 2,),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 40,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.folder),
-                                    Text('  Region')
+                                    Text(' Date fin')
                                   ],
                                 ),
                               ),
@@ -198,6 +217,60 @@ class ClientPage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          // const SizedBox(width: 2,),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 40,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.search),
+                                    Text('  Region')
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 40,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.folder),
+                                    Text('  Categorie')
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
                           ),
                           // const SizedBox(width: 2,),
                           Padding(
@@ -236,7 +309,7 @@ class ClientPage extends StatelessWidget {
               height: 15,
             ),
             Container(
-              height: size.height * 0.24,
+              height: size.height * 0.28,
               width: size.width * 0.95,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -269,6 +342,56 @@ class ClientPage extends StatelessWidget {
                         )
                       ],
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                              AppColors.BackOrangeColor,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(16))),
+                              minimumSize:const  Size(90, 32)),
+                          child: const Text(
+                            'Homme',
+                            style: TextStyle(color: Colors.black),
+                          )),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                              AppColors.BackOrangeColor,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(16))),
+                              minimumSize:const  Size(90, 32)),
+                          child: const Text(
+                            'Femme',
+                            style: TextStyle(color: Colors.black),
+                          )),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                              AppColors.BackOrangeColor,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(16))),
+                              minimumSize:const  Size(90, 32)),
+                          child: const Text(
+                            'Tous',
+                            style: TextStyle(color: Colors.black),
+                          )),
+                    ],
                   ),
                   Row(
                     children: [
@@ -339,9 +462,6 @@ class ClientPage extends StatelessWidget {
             ),
             const SizedBox(
               height: 5,
-            ),
-            const SizedBox(
-              height: 10,
             ),
             Container(
               height: size.height * 0.12,
@@ -427,70 +547,275 @@ class ClientPage extends StatelessWidget {
                 ],
               ),
             ),
-            for (int i = 0; i < 5; i++)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const DashBoard()),
-                    );
-                  },
-                  child: Container(
-                    height: size.height * 0.05,
-                    width: size.width * 1,
-                    decoration: BoxDecoration(
-                        color: AppColors.BackOrangeColor,
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, right: 25.0, top: 12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const CircleAvatar(),
-                                Text(
-                                  'TAGAKOU Hammel',
-                                  style: GoogleFonts.ubuntu(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18),
-                                ),
-                              ],
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: _size.height * 2.4,
+                decoration:  BoxDecoration(
+                  color: AppColors.BackBlueColor,
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                child: ListView.builder(
+                    itemCount: clients.length,
+                    itemBuilder: (context, index) {
+                      final val = clients[index];
+                      final client = val['nom'];
+                      final prenom = val['prenom'];
+                      final sexe = val['sexe'];
+                      final quartier = val['quartier'];
+                      final ville = val['ville'];
+                      final date = val['date_de_naissance'];
+
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      // color: AppColors.BackBlueColor
+                                    ),
+                                    height: 320,
+                                    width: 400,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Detaile du client $client',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 24),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15.0),
+                                          child: Container(
+                                            width: 360,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Colors.transparent,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            alignment: Alignment.topLeft,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Nom :   $client",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "prenom :   $prenom",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Sexe :   $sexe",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Date de naissance :   $date",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Quartier :   $quartier",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Ville :   $ville",
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 30,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 30.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        height: 40,
+                                                        width: 110,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(50),
+                                                            color: Colors.red),
+                                                        child: const Center(
+                                                            child: Text(
+                                                          'Supprimer',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        )),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 50,
+                                                      ),
+                                                      Container(
+                                                        height: 40,
+                                                        width: 110,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(50),
+                                                          color: Colors.green,
+                                                        ),
+                                                        child: const Center(
+                                                            child: Text(
+                                                          'Modifier',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        )),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                showDragHandle: true,
+                                enableDrag: true,
+                                backgroundColor: AppColors.BackBlueColor);
+                          },
+                          child: Container(
+                            height: size.height * 0.05,
+                            width: size.width * 1,
+                            decoration: BoxDecoration(
+                                color: AppColors.BackOrangeColor,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8.0, right: 25.0, top: 12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          '$client',
+                                          style: GoogleFonts.ubuntu(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text('$date',
+                                      style: GoogleFonts.ubuntu(
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 18)),
+                                ],
+                              ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Text('01-01-2023',
-                              style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.normal, fontSize: 18)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                        ),
+                      );
+                    }),
               ),
+            ),
             const SizedBox(
               height: 10,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DashBoard()),
-          );
-        },
-        child: const Icon(Icons.add),
+      floatingActionButton: SpeedDial(
+        icon: Icons.call,
+        animatedIcon: AnimatedIcons.menu_close,
+        overlayColor: AppColors.BackOrangeColor,
+        spaceBetweenChildren: 12,
+        spacing: 12,
+        children: [
+          SpeedDialChild(
+              child: const Icon(Icons.add),
+              backgroundColor: Colors.white,
+              onTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => const CreateClient()),
+                  ),
+              onLongPress: () => print('very cool'),
+              label: 'Ajouter'),
+          SpeedDialChild(
+              child: const Icon(Icons.mode),
+              backgroundColor: Colors.blue,
+              label: 'Modifier',
+              onTap: () => Fluttertoast.showToast(
+                  msg: 'cool...',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 6,
+                  backgroundColor: Colors.greenAccent,
+                  textColor: Colors.black,
+                  fontSize: 16),
+              onLongPress: () => print('Modifier un client')),
+          SpeedDialChild(
+            child: const Icon(Icons.delete),
+            backgroundColor: Colors.red,
+            onTap: () => print('cool'),
+            onLongPress: () => print('very cool'),
+            label: 'Supprimer',
+          )
+        ],
       ),
     );
   }
