@@ -22,13 +22,61 @@ class _DashBoardState extends State<DashBoard> {
   late List<GDPData> _chartData1;
   late List<GDPData> _chartData2;
   late List<GDPBarData> _chartBar;
+  late List<GDPBarData> _chartBar1;
+  late List<GDPBarData> _chartBar2;
   late TooltipBehavior _tooltipBehavior;
+
+  final event = [
+    {
+      'evenement': 'nouvel ans',
+      'date': '01-01-2023',
+      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'etat': 'envoie',
+      'etat message': 'sauvegarde',
+      'type message': 'mail'
+    },
+    {
+      'evenement': 'nouvel ans',
+      'date': '01-01-2023',
+      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'etat': 'en attente',
+      'etat message': 'sauvegarde',
+      'type message': 'mail'
+    },
+    {
+      'evenement': 'nouvel ans',
+      'date': '01-01-2023',
+      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'etat': 'envoie',
+      'etat message': 'brouillon',
+      'type message': 'mail'
+    },
+    {
+      'evenement': 'nouvel ans',
+      'date': '01-01-2023',
+      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'etat': 'envoie',
+      'etat message': 'sauvegarde',
+      'type message': 'mail'
+    },
+    {
+      'evenement': 'nouvel ans',
+      'date': '01-01-2023',
+      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'etat': 'envoie',
+      'etat message': 'sauvegarde',
+      'type message': 'mail'
+    },
+  ];
   @override
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   var currentPage = DrawerSections.dashboard;
   bool isVisible = true;
   bool isVisible1 = true;
   bool isVisible2 = true;
+  bool isVisible3 = true;
+  bool isVisible4 = true;
+  bool isVisible5 = true;
   bool isPressed = false;
   bool isPressed1 = false;
   bool isPressed2 = false;
@@ -44,6 +92,8 @@ class _DashBoardState extends State<DashBoard> {
     _chartData1 = getChartData1();
     _chartData2 = getChartData2();
     _chartBar = getChartBarData();
+    _chartBar1 = getChartBarData1();
+    _chartBar2 = getChartBarData2();
     _tooltipBehavior = TooltipBehavior(enable: true);
     isPressed1 = true;
     isPressed2 = true;
@@ -52,6 +102,9 @@ class _DashBoardState extends State<DashBoard> {
     isVisible = true;
     isVisible1 = false;
     isVisible2 = false;
+    isVisible3 = true;
+    isVisible4 = false;
+    isVisible5 = false;
   }
 
   final clients = [
@@ -305,7 +358,6 @@ class _DashBoardState extends State<DashBoard> {
                                       tooltipBehavior: _tooltipBehavior,
                                       series: <CircularSeries>[
                                         PieSeries<GDPData, String>(
-
                                           dataSource: _chartData2,
                                           xValueMapper: (GDPData data, _) =>
                                               data.continent,
@@ -504,10 +556,12 @@ class _DashBoardState extends State<DashBoard> {
                                     ElevatedButton(
                                         onPressed: () {
                                           setState(() {
-                                            isVisible = !isVisible;
+                                            isVisible4 = !isVisible4;
+                                            isVisible3 =  false;
+                                            isVisible5 =  false;
+                                            isPressed5 = true;
                                             isPressed4 = true;
                                             isPressed3 = !isPressed3;
-                                            isPressed5 = true;
                                           });
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -528,10 +582,12 @@ class _DashBoardState extends State<DashBoard> {
                                     ElevatedButton(
                                         onPressed: () {
                                           setState(() {
-                                            isVisible = !isVisible;
+                                            isVisible5 = !isVisible5;
+                                            isVisible4 = false;
+                                            isVisible3 = false;
+                                            isPressed4 = !isPressed4;
                                             isPressed5 = true;
                                             isPressed3 = true;
-                                            isPressed4 = !isPressed4;
                                           });
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -543,7 +599,7 @@ class _DashBoardState extends State<DashBoard> {
                                                     Radius.circular(16))),
                                             minimumSize: const Size(90, 32)),
                                         child: const Text(
-                                          'Trimestre',
+                                          'Trimestres',
                                           style: TextStyle(color: Colors.black),
                                         )),
                                     const SizedBox(
@@ -552,9 +608,11 @@ class _DashBoardState extends State<DashBoard> {
                                     ElevatedButton(
                                         onPressed: () {
                                           setState(() {
-                                            isVisible = !isVisible;
-                                            isPressed5 = !isPressed5;
+                                            isVisible3 = !isVisible3;
+                                            isVisible4 = false;
+                                            isVisible5 = false;
                                             isPressed4 = true;
+                                            isPressed5 = !isPressed5;
                                             isPressed3 = true;
                                           });
                                         },
@@ -577,34 +635,103 @@ class _DashBoardState extends State<DashBoard> {
                               //     child: Container(
                               //   color: Colors.yellow,
                               // ))
-                              Visibility(
-                                  visible: isVisible,
-                                  child: SfCartesianChart(
-                                    // legend: const Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap),
-                                    tooltipBehavior: _tooltipBehavior,
-                                    primaryXAxis: CategoryAxis(),
-                                    series: <CartesianSeries>[
-                                      ColumnSeries<GDPBarData, String>(
-                                        dataLabelSettings: const DataLabelSettings(isVisible: true),
-                                          enableTooltip: true,
-                                          dataSource: _chartBar,
-                                          xValueMapper: (GDPBarData data, _) =>
+                              Stack(
+                                children: [
+                                  Visibility(
+                                      visible: isVisible3,
+                                      child: SfCartesianChart(
+                                        // legend: const Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap),
+                                        tooltipBehavior: _tooltipBehavior,
+                                        primaryXAxis: CategoryAxis(),
+                                        series: <CartesianSeries>[
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                                  const DataLabelSettings(
+                                                      isVisible: true),
+                                              enableTooltip: true,
+                                              dataSource: _chartBar,
+                                              xValueMapper: (GDPBarData data, _) =>
+                                                  data.month,
+                                              yValueMapper: (GDPBarData data, _) =>
+                                                  data.Homme),
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                                  const DataLabelSettings(
+                                                isVisible: true,
+                                              ),
+                                              color: AppColors.BackOrangeColor,
+                                              dataSource: _chartBar,
+                                              xValueMapper: (GDPBarData data, _) =>
+                                                  data.month,
+                                              yValueMapper: (GDPBarData data, _) =>
+                                                  data.Femme),
+                                        ],
+                                      )),
+
+
+                                  Visibility(
+                                      visible: isVisible4,
+                                      child: SfCartesianChart(
+                                        // legend: const Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap),
+                                        tooltipBehavior: _tooltipBehavior,
+                                        primaryXAxis: CategoryAxis(),
+                                        series: <CartesianSeries>[
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                              const DataLabelSettings(
+                                                  isVisible: true),
+                                              enableTooltip: true,
+                                              dataSource: _chartBar1,
+                                              xValueMapper: (GDPBarData data, _) =>
                                               data.month,
-                                          yValueMapper: (GDPBarData data, _) =>
+                                              yValueMapper: (GDPBarData data, _) =>
                                               data.Homme),
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                              const DataLabelSettings(
+                                                isVisible: true,
+                                              ),
+                                              color: AppColors.BackOrangeColor,
+                                              dataSource: _chartBar1,
+                                              xValueMapper: (GDPBarData data, _) =>
+                                              data.month,
+                                              yValueMapper: (GDPBarData data, _) =>
+                                              data.Femme),
+                                        ],
+                                      )),
 
-                                      ColumnSeries<GDPBarData, String>(
-                                          dataLabelSettings: const DataLabelSettings(isVisible: true,),
-                                          color: AppColors.BackOrangeColor,
-                                          dataSource: _chartBar,
-                                          xValueMapper: (GDPBarData data, _) =>
-                                          data.month,
-                                          yValueMapper: (GDPBarData data, _) =>
-                                          data.Femme),
-
-
-                                    ],
-                                  )),
+                                  Visibility(
+                                      visible: isVisible5,
+                                      child: SfCartesianChart(
+                                        // legend: const Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap),
+                                        tooltipBehavior: _tooltipBehavior,
+                                        primaryXAxis: CategoryAxis(),
+                                        series: <CartesianSeries>[
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                              const DataLabelSettings(
+                                                  isVisible: true),
+                                              enableTooltip: true,
+                                              dataSource: _chartBar2,
+                                              xValueMapper: (GDPBarData data, _) =>
+                                              data.month,
+                                              yValueMapper: (GDPBarData data, _) =>
+                                              data.Homme),
+                                          ColumnSeries<GDPBarData, String>(
+                                              dataLabelSettings:
+                                              const DataLabelSettings(
+                                                isVisible: true,
+                                              ),
+                                              color: AppColors.BackOrangeColor,
+                                              dataSource: _chartBar2,
+                                              xValueMapper: (GDPBarData data, _) =>
+                                              data.month,
+                                              yValueMapper: (GDPBarData data, _) =>
+                                              data.Femme),
+                                        ],
+                                      )),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -712,16 +839,24 @@ class _DashBoardState extends State<DashBoard> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               Container(
-                                height: _size.height * 2.1,
-                                decoration: const BoxDecoration(
-                                    color: AppColors.BackBlueColor),
+                                height: _size.height * 2.03,
+                                decoration: BoxDecoration(
+                                    color: AppColors.BackBlueColor,
+                                    borderRadius: BorderRadius.circular(12)),
                                 child: ListView.builder(
-                                    itemCount: clients.length,
+                                    itemCount: event.length,
                                     itemBuilder: (context, index) {
-                                      final val = clients[index];
-                                      final client = val['evenement'];
+                                      final val = event[index];
+                                      final events = val['evenement'];
                                       final date = val['date'];
+                                      final date_e = val['date et heure d\' d\' envois'];
+                                      final etat = val['etat'];
+                                      final etat_message = val['etat message'];
+                                      final type_message = val['type message'];
 
                                       return Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -729,77 +864,220 @@ class _DashBoardState extends State<DashBoard> {
                                           onTap: () {
                                             showModalBottomSheet(
                                                 context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return SizedBox(
-                                                    height: 400,
+                                                builder: (BuildContext context) {
+                                                  return Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(12),
+                                                      // color: AppColors.BackBlueColor
+                                                    ),
+                                                    height: 320,
+                                                    width: 400,
                                                     child: Column(
                                                       children: [
-                                                        const Text("Nom"),
-                                                        Text('$client'),
-                                                        const Text(
-                                                            'Date de naissance'),
-                                                        Text('$date')
+                                                        Text(
+                                                          'Detaile sur l\'evenement $events',
+                                                          style: const TextStyle(
+                                                              fontWeight: FontWeight.bold,
+                                                              fontSize: 24),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(
+                                                              left: 15.0),
+                                                          child: Container(
+                                                            width: 360,
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                  color: Colors.transparent,
+                                                                ),
+                                                                borderRadius:
+                                                                BorderRadius.circular(
+                                                                    12)),
+                                                            alignment: Alignment.topLeft,
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment.start,
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment.start,
+                                                              children: [
+                                                                Text(
+                                                                  "Evenement :   $events",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "Date :   $date",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "Date et heure d\'envoie :   $date_e",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "Etat envoie:   $etat",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "Etat message:   $etat_message",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "Type message :   $type_message",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      fontWeight:
+                                                                      FontWeight.bold),
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 30,
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                  const EdgeInsets.only(
+                                                                      left: 30.0),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Container(
+                                                                        height: 40,
+                                                                        width: 110,
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius:
+                                                                            BorderRadius
+                                                                                .circular(
+                                                                                50),
+                                                                            color:
+                                                                            Colors.red),
+                                                                        child: const Center(
+                                                                            child: Text(
+                                                                              'Supprimer',
+                                                                              style: TextStyle(
+                                                                                  fontWeight:
+                                                                                  FontWeight
+                                                                                      .bold,
+                                                                                  color: Colors
+                                                                                      .white),
+                                                                            )),
+                                                                      ),
+                                                                      const SizedBox(
+                                                                        width: 50,
+                                                                      ),
+                                                                      Container(
+                                                                        height: 40,
+                                                                        width: 110,
+                                                                        decoration:
+                                                                        BoxDecoration(
+                                                                          borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                              50),
+                                                                          color:
+                                                                          Colors.green,
+                                                                        ),
+                                                                        child: const Center(
+                                                                            child: Text(
+                                                                              'Modifier',
+                                                                              style: TextStyle(
+                                                                                  fontWeight:
+                                                                                  FontWeight
+                                                                                      .bold,
+                                                                                  color: Colors
+                                                                                      .white),
+                                                                            )),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   );
-                                                });
+                                                },
+                                                showDragHandle: true,
+                                                enableDrag: true,
+                                                backgroundColor: AppColors.BackBlueColor);
                                           },
                                           child: Container(
-                                            height: size.height * 0.05,
-                                            width: size.width * 1,
+                                            height: _size.height * 0.4,
+                                            width: _size.width * 1,
                                             decoration: BoxDecoration(
-                                                color:
-                                                    AppColors.BackOrangeColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
+                                                color: AppColors.BackOrangeColor,
+                                                borderRadius: BorderRadius.circular(12)),
                                             child: Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 8.0,
-                                                  right: 25.0,
-                                                  top: 2),
+                                                  left: 8.0, right: 25.0, top: 12),
                                               child: Row(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
+                                                CrossAxisAlignment.stretch,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 2.0),
+                                                    const EdgeInsets.only(bottom: 8.0),
                                                     child: Row(
                                                       children: [
-                                                        Text(
-                                                          '$date',
-                                                          style: GoogleFonts
-                                                              .ubuntu(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  fontSize: 18),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 40,
-                                                        ),
-                                                        Text('$client',
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(
+                                                              bottom: 12.0),
+                                                          child: Text(
+                                                            '$date',
                                                             style: GoogleFonts.ubuntu(
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                                fontSize: 18)),
+                                                                FontWeight.normal,
+                                                                fontSize: 16),
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
                                                   // const SizedBox(
-                                                  //   width: 5,
+                                                  //   width: 16,
                                                   // ),
+                                                  Text('$events',
+                                                      style: GoogleFonts.ubuntu(
+                                                          fontWeight: FontWeight.normal,
+                                                          fontSize: 16)),
+                                                  IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
 
-                                                  IconButton(
-                                                      onPressed: () {},
-                                                      icon: const Icon(
-                                                          Icons.menu))
+                                                  // Text('$etat',
+                                                  //     style: GoogleFonts.ubuntu(
+                                                  //         fontWeight: FontWeight.normal,
+                                                  //         fontSize: 16)),
                                                 ],
                                               ),
                                             ),
@@ -807,6 +1085,9 @@ class _DashBoardState extends State<DashBoard> {
                                         ),
                                       );
                                     }),
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                             ],
                           ),
@@ -927,13 +1208,15 @@ class _DashBoardState extends State<DashBoard> {
                 child: Icon(
               icon,
               size: 20,
-              color: Colors.black,
+              color: selected ? Colors.black : Colors.white,
             )),
             Expanded(
                 flex: 3,
                 child: Text(
                   title,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(
+                      color: selected ? Colors.black : Colors.white,
+                      fontSize: 16),
                 ))
           ]),
         ),
@@ -986,6 +1269,25 @@ class _DashBoardState extends State<DashBoard> {
     ];
     return barData;
   }
+
+  List<GDPBarData> getChartBarData1() {
+    final List<GDPBarData> barDataS = [
+      GDPBarData('Semestre 1', 25, 70),
+      GDPBarData('Semestre 2', 56, 40),
+    ];
+    return barDataS;
+  }
+
+  List<GDPBarData> getChartBarData2() {
+    final List<GDPBarData> barDataF = [
+      GDPBarData('Trimestre 1', 25, 70),
+      GDPBarData('Trimestre 2', 56, 40),
+      GDPBarData('Trimestre 3', 41, 30),
+      GDPBarData('Trimestre 4', 66, 22),
+
+    ];
+    return barDataF;
+  }
 }
 
 class GDPData {
@@ -1000,5 +1302,7 @@ class GDPBarData {
   final double Homme;
   final double Femme;
 }
+
+
 
 enum DrawerSections { dashboard, client, evenement, journal, agence }

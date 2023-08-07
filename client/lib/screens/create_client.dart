@@ -161,7 +161,7 @@ class _CreateClientState extends State<CreateClient> {
                         child: const Center(
                             child: Text(
                           'Annuler',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
                         )),
                       ),
                       const SizedBox(
@@ -177,7 +177,7 @@ class _CreateClientState extends State<CreateClient> {
                         child: const Center(
                             child: Text(
                           'Enregistre',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
                         )),
                       ),
                     ],

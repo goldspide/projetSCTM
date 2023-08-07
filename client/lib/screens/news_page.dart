@@ -1,4 +1,5 @@
 import 'package:client/screens/create_agence.dart';
+import 'package:client/screens/create_news.dart';
 import 'package:client/screens/dashboard.dart';
 import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -650,7 +651,7 @@ class _NewsPageState extends State<NewsPage> {
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                     FontWeight
-                                                                        .bold),
+                                                                        .bold,color: Colors.white),
                                                               )),
                                                         ),
                                                         const SizedBox(
@@ -671,7 +672,7 @@ class _NewsPageState extends State<NewsPage> {
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                     FontWeight
-                                                                        .bold),
+                                                                        .bold,color: Colors.white),
                                                               )),
                                                         ),
                                                       ],
@@ -742,7 +743,7 @@ class _NewsPageState extends State<NewsPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const CreateAgence()),
+            MaterialPageRoute(builder: (context) => const CreateNews()),
           );
         },
         child: const Icon(Icons.add),

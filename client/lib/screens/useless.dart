@@ -647,3 +647,154 @@
 //     ),
 //   ],
 // ),
+
+
+// Container(
+//   height: size.height * 0.28,
+//   width: size.width * 0.95,
+//   decoration: BoxDecoration(
+//       borderRadius: BorderRadius.circular(12),
+//       color: AppColors.BackBlueColor),
+//   child: Column(
+//     crossAxisAlignment: CrossAxisAlignment.start,
+//     children: [
+//       Padding(
+//         padding: const EdgeInsets.only(top: 2.0, left: 12),
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             Text(
+//               'Client 2023',
+//               style: GoogleFonts.ubuntu(
+//                   color: Colors.blue,
+//                   fontWeight: FontWeight.bold,
+//                   fontSize: 16),
+//             ),
+//             // const SizedBox(
+//             //   width: 1,
+//             // ),
+//             IconButton(
+//               onPressed: () {},
+//               icon: const Icon(
+//                 Icons.arrow_drop_down,
+//                 size: 30,
+//                 color: Colors.blue,
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           ElevatedButton(
+//               onPressed: () {},
+//               style: ElevatedButton.styleFrom(
+//                   backgroundColor: AppColors.BackOrangeColor,
+//                   shape: const RoundedRectangleBorder(
+//                       borderRadius:
+//                           BorderRadius.all(Radius.circular(16))),
+//                   minimumSize: const Size(90, 32)),
+//               child: const Text(
+//                 'Homme',
+//                 style: TextStyle(color: Colors.black),
+//               )),
+//           const SizedBox(
+//             width: 10,
+//           ),
+//           ElevatedButton(
+//               onPressed: () {},
+//               style: ElevatedButton.styleFrom(
+//                   backgroundColor: AppColors.BackOrangeColor,
+//                   shape: const RoundedRectangleBorder(
+//                       borderRadius:
+//                           BorderRadius.all(Radius.circular(16))),
+//                   minimumSize: const Size(90, 32)),
+//               child: const Text(
+//                 'Femme',
+//                 style: TextStyle(color: Colors.black),
+//               )),
+//           const SizedBox(
+//             width: 10,
+//           ),
+//           ElevatedButton(
+//               onPressed: () {},
+//               style: ElevatedButton.styleFrom(
+//                   backgroundColor: AppColors.BackOrangeColor,
+//                   shape: const RoundedRectangleBorder(
+//                       borderRadius:
+//                           BorderRadius.all(Radius.circular(16))),
+//                   minimumSize: const Size(90, 32)),
+//               child: const Text(
+//                 'Tous',
+//                 style: TextStyle(color: Colors.black),
+//               )),
+//         ],
+//       ),
+//       Row(
+//         children: [
+//           AnimatedCircularChart(
+//             size: _size,
+//             initialChartData: const <CircularStackEntry>[
+//               CircularStackEntry(
+//                 <CircularSegmentEntry>[
+//                   CircularSegmentEntry(20.00, AppColors.OrangColor,
+//                       rankKey: 'completed'),
+//                   CircularSegmentEntry(80.00, AppColors.BlueColor,
+//                       rankKey: 'Remaining'),
+//                 ],
+//                 rankKey: 'progress',
+//               ),
+//             ],
+//             chartType: CircularChartType.Radial,
+//             percentageValues: true,
+//             holeLabel: '  200 \nTotal',
+//             labelStyle: GoogleFonts.ubuntu(
+//               color: AppColors.OrangColor,
+//               fontWeight: FontWeight.bold,
+//               fontSize: 18.0,
+//             ),
+//           ),
+//           Column(
+//             children: [
+//               Padding(
+//                 padding:
+//                     const EdgeInsets.only(bottom: 10.0, left: 8.0),
+//                 child: Row(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Container(
+//                       height: 12,
+//                       width: 12,
+//                       decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(100),
+//                           color: AppColors.OrangColor),
+//                     ),
+//                     const Text('  Nombre D\'Homme Actif  120'),
+//                   ],
+//                 ),
+//               ),
+//               Padding(
+//                 padding:
+//                     const EdgeInsets.only(bottom: 10.0, left: 8.0),
+//                 child: Row(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Container(
+//                       height: 12,
+//                       width: 12,
+//                       decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(100),
+//                           color: AppColors.BlueColor),
+//                     ),
+//                     const Text('  Nombre De Femme Actif 120'),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     ],
+//   ),
+// ),

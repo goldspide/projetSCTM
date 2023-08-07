@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ClientPage extends StatefulWidget {
   const ClientPage({super.key});
@@ -15,6 +16,10 @@ class ClientPage extends StatefulWidget {
 }
 
 class _ClientPageState extends State<ClientPage> {
+  late TooltipBehavior _tooltipBehavior;
+  late List<GDPData> _chartData;
+  late List<GDPData> _chartData1;
+  late List<GDPData> _chartData2;
   final clients = [
     {
       'nom': 'paul',
@@ -58,6 +63,28 @@ class _ClientPageState extends State<ClientPage> {
     }
   ];
   @override
+  bool isVisible = true;
+  bool isVisible1 = true;
+  bool isVisible2 = true;
+  bool isPressed = false;
+  bool isPressed1 = false;
+  bool isPressed2 = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _chartData = getChartData();
+    _chartData1 = getChartData1();
+    _chartData2 = getChartData2();
+    isPressed1 = true;
+    isPressed2 = true;
+    isVisible = true;
+    isVisible1 = false;
+    isVisible2 = false;
+    _tooltipBehavior = TooltipBehavior(enable: true);
+  }
+
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final _size = Size(120, 120);
@@ -83,7 +110,7 @@ class _ClientPageState extends State<ClientPage> {
               height: 1,
             ),
             Container(
-              height: size.height * 0.3 ,
+              height: size.height * 0.3,
               width: size.width * 0.95,
               decoration: BoxDecoration(
                   color: AppColors.BackOrangeColor,
@@ -308,8 +335,9 @@ class _ClientPageState extends State<ClientPage> {
             const SizedBox(
               height: 15,
             ),
+
             Container(
-              height: size.height * 0.28,
+              height: size.height * 0.482,
               width: size.width * 0.95,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -318,7 +346,8 @@ class _ClientPageState extends State<ClientPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 2.0, left: 12),
+                    padding:
+                    const EdgeInsets.only(top: 2.0, left: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -329,6 +358,7 @@ class _ClientPageState extends State<ClientPage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
+
                         // const SizedBox(
                         //   width: 1,
                         // ),
@@ -347,14 +377,24 @@ class _ClientPageState extends State<ClientPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              isVisible1 = !isVisible1;
+                              isVisible = false;
+                              isVisible2 = false;
+                              isPressed = true;
+                              isPressed2 = true;
+                              isPressed1 = !isPressed1;
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              AppColors.BackOrangeColor,
+                              backgroundColor: isPressed1
+                                  ? AppColors.BackOrangeColor
+                                  : Colors.blue,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(16))),
-                              minimumSize:const  Size(90, 32)),
+                              minimumSize: const Size(90, 32)),
                           child: const Text(
                             'Homme',
                             style: TextStyle(color: Colors.black),
@@ -363,14 +403,24 @@ class _ClientPageState extends State<ClientPage> {
                         width: 10,
                       ),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              isVisible2 = !isVisible2;
+                              isVisible1 = false;
+                              isVisible = false;
+                              isPressed2 = !isPressed2;
+                              isPressed = true;
+                              isPressed1 = true;
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              AppColors.BackOrangeColor,
+                              backgroundColor: isPressed2
+                                  ? AppColors.BackOrangeColor
+                                  : Colors.blue,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(16))),
-                              minimumSize:const  Size(90, 32)),
+                              minimumSize: const Size(90, 32)),
                           child: const Text(
                             'Femme',
                             style: TextStyle(color: Colors.black),
@@ -379,87 +429,110 @@ class _ClientPageState extends State<ClientPage> {
                         width: 10,
                       ),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              isVisible = !isVisible;
+                              isVisible1 = false;
+                              isVisible2 = false;
+                              isPressed1 = true;
+                              isPressed = !isPressed;
+                              isPressed2 = true;
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              AppColors.BackOrangeColor,
+                              backgroundColor: isPressed
+                                  ? AppColors.BackOrangeColor
+                                  : Colors.blue,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(16))),
-                              minimumSize:const  Size(90, 32)),
+                              minimumSize: const Size(90, 32)),
                           child: const Text(
                             'Tous',
                             style: TextStyle(color: Colors.black),
                           )),
                     ],
                   ),
-                  Row(
+                  Stack(
                     children: [
-                      AnimatedCircularChart(
-                        size: _size,
-                        initialChartData: const <CircularStackEntry>[
-                          CircularStackEntry(
-                            <CircularSegmentEntry>[
-                              CircularSegmentEntry(20.00, AppColors.OrangColor,
-                                  rankKey: 'completed'),
-                              CircularSegmentEntry(80.00, AppColors.BlueColor,
-                                  rankKey: 'Remaining'),
-                            ],
-                            rankKey: 'progress',
-                          ),
-                        ],
-                        chartType: CircularChartType.Radial,
-                        percentageValues: true,
-                        holeLabel: '  200 \nTotal',
-                        labelStyle: GoogleFonts.ubuntu(
-                          color: AppColors.OrangColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
+                      Visibility(
+                        visible: isVisible,
+                        child: SfCircularChart(
+                          borderWidth: 2,
+                          legend: const Legend(
+                              isVisible: true,
+                              overflowMode:
+                              LegendItemOverflowMode.wrap),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            PieSeries<GDPData, String>(
+                              dataSource: _chartData,
+                              xValueMapper: (GDPData data, _) =>
+                              data.continent,
+                              yValueMapper: (GDPData data, _) =>
+                              data.gdp,
+                              dataLabelSettings:
+                              const DataLabelSettings(
+                                  isVisible: true),
+                              enableTooltip: true,
+                            ),
+                          ],
                         ),
                       ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 10.0, left: 8.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 12,
-                                  width: 12,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: AppColors.OrangColor),
-                                ),
-                                const Text('  Nombre D\'Homme Actif  120'),
-                              ],
+                      Visibility(
+                        visible: isVisible1,
+                        child: SfCircularChart(
+                          borderWidth: 2,
+                          legend: const Legend(
+                              isVisible: true,
+                              overflowMode:
+                              LegendItemOverflowMode.wrap),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            PieSeries<GDPData, String>(
+                              dataSource: _chartData1,
+                              xValueMapper: (GDPData data, _) =>
+                              data.continent,
+                              yValueMapper: (GDPData data, _) =>
+                              data.gdp,
+                              dataLabelSettings:
+                              const DataLabelSettings(
+                                  isVisible: true),
+                              enableTooltip: true,
                             ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 10.0, left: 8.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 12,
-                                  width: 12,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: AppColors.BlueColor),
-                                ),
-                                const Text('  Nombre De Femme Actif 120'),
-                              ],
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: isVisible2,
+                        child: SfCircularChart(
+                          borderWidth: 2,
+                          legend: const Legend(
+                              isVisible: true,
+                              overflowMode:
+                              LegendItemOverflowMode.wrap),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            PieSeries<GDPData, String>(
+                              dataSource: _chartData2,
+                              xValueMapper: (GDPData data, _) =>
+                              data.continent,
+                              yValueMapper: (GDPData data, _) =>
+                              data.gdp,
+                              dataLabelSettings:
+                              const DataLabelSettings(
+                                  isVisible: true),
+                              enableTooltip: true,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
+
             const SizedBox(
               height: 5,
             ),
@@ -554,10 +627,9 @@ class _ClientPageState extends State<ClientPage> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 height: _size.height * 2.4,
-                decoration:  BoxDecoration(
-                  color: AppColors.BackBlueColor,
-                  borderRadius: BorderRadius.circular(12)
-                ),
+                decoration: BoxDecoration(
+                    color: AppColors.BackBlueColor,
+                    borderRadius: BorderRadius.circular(12)),
                 child: ListView.builder(
                     itemCount: clients.length,
                     itemBuilder: (context, index) {
@@ -673,8 +745,9 @@ class _ClientPageState extends State<ClientPage> {
                                                   height: 30,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 30.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 30.0),
                                                   child: Row(
                                                     children: [
                                                       Container(
@@ -683,7 +756,8 @@ class _ClientPageState extends State<ClientPage> {
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(50),
+                                                                    .circular(
+                                                                        50),
                                                             color: Colors.red),
                                                         child: const Center(
                                                             child: Text(
@@ -691,7 +765,9 @@ class _ClientPageState extends State<ClientPage> {
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold),
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
                                                         )),
                                                       ),
                                                       const SizedBox(
@@ -700,7 +776,8 @@ class _ClientPageState extends State<ClientPage> {
                                                       Container(
                                                         height: 40,
                                                         width: 110,
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(50),
@@ -712,7 +789,9 @@ class _ClientPageState extends State<ClientPage> {
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold),
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
                                                         )),
                                                       ),
                                                     ],
@@ -741,7 +820,8 @@ class _ClientPageState extends State<ClientPage> {
                                   left: 8.0, right: 25.0, top: 12),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 8.0),
@@ -778,45 +858,45 @@ class _ClientPageState extends State<ClientPage> {
           ],
         ),
       ),
-      floatingActionButton: SpeedDial(
-        icon: Icons.call,
-        animatedIcon: AnimatedIcons.menu_close,
-        overlayColor: AppColors.BackOrangeColor,
-        spaceBetweenChildren: 12,
-        spacing: 12,
-        children: [
-          SpeedDialChild(
-              child: const Icon(Icons.add),
-              backgroundColor: Colors.white,
-              onTap: () => Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => const CreateClient()),
-                  ),
-              onLongPress: () => print('very cool'),
-              label: 'Ajouter'),
-          SpeedDialChild(
-              child: const Icon(Icons.mode),
-              backgroundColor: Colors.blue,
-              label: 'Modifier',
-              onTap: () => Fluttertoast.showToast(
-                  msg: 'cool...',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 6,
-                  backgroundColor: Colors.greenAccent,
-                  textColor: Colors.black,
-                  fontSize: 16),
-              onLongPress: () => print('Modifier un client')),
-          SpeedDialChild(
-            child: const Icon(Icons.delete),
-            backgroundColor: Colors.red,
-            onTap: () => print('cool'),
-            onLongPress: () => print('very cool'),
-            label: 'Supprimer',
-          )
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CreateClient()),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
+  List<GDPData> getChartData() {
+    final List<GDPData> chartData = [
+      GDPData('Homme Actif', 25),
+      GDPData('Femme Actif', 60),
+    ];
+    return chartData;
+  }
+
+  List<GDPData> getChartData1() {
+    final List<GDPData> chartData = [
+      GDPData('Homme Actif', 36),
+      GDPData('Homme Total', 60),
+    ];
+    return chartData;
+  }
+
+  List<GDPData> getChartData2() {
+    final List<GDPData> chartData = [
+      GDPData('Femme Actif', 50),
+      GDPData('Femme Total', 60),
+    ];
+    return chartData;
+  }
+
+}
+
+class GDPData {
+  GDPData(this.continent, this.gdp);
+  final String continent;
+  final int gdp;
 }

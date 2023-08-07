@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CreateAgence  extends StatefulWidget {
-  const CreateAgence ({super.key});
+class CreateAgence extends StatefulWidget {
+  const CreateAgence({super.key});
 
   @override
   State<CreateAgence> createState() => _CreateAgenceState();
@@ -39,11 +39,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: responsableController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => responsableController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => responsableController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -57,11 +57,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: codeController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => codeController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => codeController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -75,11 +75,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: descriptionController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => descriptionController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => descriptionController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -93,11 +93,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: regionController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => regionController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => regionController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -111,11 +111,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: quartierController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => quartierController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => quartierController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -129,13 +129,12 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: villeController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => villeController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => villeController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -148,11 +147,11 @@ class _CreateAgenceState extends State<CreateAgence> {
                     border: const OutlineInputBorder(),
                     suffixIcon: contactController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => contactController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => contactController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 30,
@@ -170,9 +169,10 @@ class _CreateAgenceState extends State<CreateAgence> {
                             color: Colors.red),
                         child: const Center(
                             child: Text(
-                              'Annuler',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
+                          'Annuler',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        )),
                       ),
                       const SizedBox(
                         width: 50,
@@ -186,9 +186,10 @@ class _CreateAgenceState extends State<CreateAgence> {
                         ),
                         child: const Center(
                             child: Text(
-                              'Enregistre',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
+                          'Enregistre',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        )),
                       ),
                     ],
                   ),

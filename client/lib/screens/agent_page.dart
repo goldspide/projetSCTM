@@ -106,7 +106,7 @@ class _AgentPageState extends State<AgentPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -119,12 +119,12 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          // const SizedBox(width: 2,),
+                          const SizedBox(width: 15,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -151,7 +151,7 @@ class _AgentPageState extends State<AgentPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -167,12 +167,12 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          // const SizedBox(width: 2,),
+                          const SizedBox(width: 16,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -212,12 +212,12 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          // const SizedBox(width: 2,),
+                          const SizedBox(width: 16,),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 40,
-                              width: 150,
+                              width: 160,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
@@ -509,7 +509,7 @@ class _AgentPageState extends State<AgentPage> {
                                                               style: TextStyle(
                                                                   fontWeight:
                                                                   FontWeight
-                                                                      .bold),
+                                                                      .bold,color: Colors.white),
                                                             )),
                                                       ),
                                                       const SizedBox(
@@ -530,7 +530,7 @@ class _AgentPageState extends State<AgentPage> {
                                                               style: TextStyle(
                                                                   fontWeight:
                                                                   FontWeight
-                                                                      .bold),
+                                                                      .bold,color: Colors.white),
                                                             )),
                                                       ),
                                                     ],
