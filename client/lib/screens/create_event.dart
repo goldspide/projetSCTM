@@ -1,3 +1,4 @@
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateEvent extends StatefulWidget {
@@ -29,6 +30,7 @@ class _CreateEventState extends State<CreateEvent> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Creer un evenement'),
+        backgroundColor: AppColors.BackBlueColor,
         centerTitle: true,
       ),
       body: SingleChildScrollView(

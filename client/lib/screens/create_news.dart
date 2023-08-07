@@ -1,3 +1,4 @@
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateNews extends StatefulWidget {
@@ -29,6 +30,7 @@ class _CreateNewsState extends State<CreateNews> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ajoute un client'),
+        backgroundColor: AppColors.BackBlueColor,
         centerTitle: true,
       ),
       body: SingleChildScrollView(

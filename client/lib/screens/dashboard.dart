@@ -181,7 +181,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.489,
+                          height: size.height * 0.55,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -514,7 +514,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.5,
+                          height: size.height * 0.55,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -742,7 +742,7 @@ class _DashBoardState extends State<DashBoard> {
                           height: 5,
                         ),
                         Container(
-                          height: size.height * 0.45,
+                          height: size.height * 0.49,
                           width: size.width * 0.95,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -843,7 +843,7 @@ class _DashBoardState extends State<DashBoard> {
                                 height: 10,
                               ),
                               Container(
-                                height: _size.height * 2.03,
+                                height: _size.height * 2,
                                 decoration: BoxDecoration(
                                     color: AppColors.BackBlueColor,
                                     borderRadius: BorderRadius.circular(12)),

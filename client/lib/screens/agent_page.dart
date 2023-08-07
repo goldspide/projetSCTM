@@ -11,12 +11,18 @@ class AgentPage extends StatefulWidget {
 }
 
 class _AgentPageState extends State<AgentPage> {
+  final codeController = TextEditingController();
+  final responsableController = TextEditingController();
+  final categorieController = TextEditingController();
+  final villeController = TextEditingController();
+  final regionController = TextEditingController();
+  final quartierController = TextEditingController();
   final agence = [
     {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
       'description': 'Industrie Metalique',
-      'region': 'Litorral',
+      'region': 'Littoral',
       'ville': 'Douala',
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
@@ -26,7 +32,7 @@ class _AgentPageState extends State<AgentPage> {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
       'description': 'Industrie Metalique',
-      'region': 'Litorral',
+      'region': 'Littoral',
       'ville': 'Douala',
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
@@ -36,7 +42,7 @@ class _AgentPageState extends State<AgentPage> {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
       'description': 'Industrie Metalique',
-      'region': 'Litorral',
+      'region': 'Littoral',
       'ville': 'Douala',
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
@@ -46,7 +52,7 @@ class _AgentPageState extends State<AgentPage> {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
       'description': 'Industrie Metalique',
-      'region': 'Litorral',
+      'region': 'Littoral',
       'ville': 'Douala',
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
@@ -56,7 +62,7 @@ class _AgentPageState extends State<AgentPage> {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
       'description': 'Industrie Metalique',
-      'region': 'Litorral',
+      'region': 'Littoral',
       'ville': 'Douala',
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
@@ -89,7 +95,7 @@ class _AgentPageState extends State<AgentPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: size.height * 0.28,
+                height: size.height * 0.3,
                 width: size.width,
                 decoration: BoxDecoration(
                   color: AppColors.BackOrangeColor,
@@ -110,11 +116,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [Icon(Icons.person), Text('  code')],
+                              child: Center(
+                                child: TextField(
+                                  controller: codeController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Code',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.code,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -128,14 +143,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.hdr_weak_rounded),
-                                    Text('  Responsable')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: responsableController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Responsable',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.person,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -155,14 +176,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.folder),
-                                    Text('  categorie')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: categorieController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Categorie',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.folder,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -176,11 +203,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [Icon(Icons.search), Text(' ville')],
+                              child: Center(
+                                child: TextField(
+                                  controller: villeController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Ville',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.location_city,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -200,14 +236,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.folder),
-                                    Text('  Region')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: regionController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Region',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.location_pin,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -221,14 +263,20 @@ class _AgentPageState extends State<AgentPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.search),
-                                    Text('  Quartier')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: quartierController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Quartier',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.location_on_outlined,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),

@@ -1,3 +1,4 @@
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateAgence extends StatefulWidget {
@@ -20,6 +21,7 @@ class _CreateAgenceState extends State<CreateAgence> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ajoute une Agence'),
+        backgroundColor: AppColors.BackBlueColor,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -53,7 +55,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'code',
                     hintText: 'Entrez le code de l\'agence',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.code),
                     border: const OutlineInputBorder(),
                     suffixIcon: codeController.text.isEmpty
                         ? Container(
@@ -71,7 +73,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'description',
                     hintText: 'description',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.description),
                     border: const OutlineInputBorder(),
                     suffixIcon: descriptionController.text.isEmpty
                         ? Container(
@@ -89,7 +91,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'Region',
                     hintText: 'Entrez la region',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.app_registration_outlined),
                     border: const OutlineInputBorder(),
                     suffixIcon: regionController.text.isEmpty
                         ? Container(
@@ -107,7 +109,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'Quartier',
                     hintText: 'Entrez Votre Quartier',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.place),
                     border: const OutlineInputBorder(),
                     suffixIcon: quartierController.text.isEmpty
                         ? Container(
@@ -125,7 +127,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'Ville',
                     hintText: 'Entrez Votre ville',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.location_city),
                     border: const OutlineInputBorder(),
                     suffixIcon: villeController.text.isEmpty
                         ? Container(
@@ -143,7 +145,7 @@ class _CreateAgenceState extends State<CreateAgence> {
                 decoration: InputDecoration(
                     labelText: 'Contact',
                     hintText: 'Entrez Votre contact',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.phone),
                     border: const OutlineInputBorder(),
                     suffixIcon: contactController.text.isEmpty
                         ? Container(

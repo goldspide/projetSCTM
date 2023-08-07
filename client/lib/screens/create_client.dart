@@ -1,3 +1,4 @@
+import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateClient extends StatefulWidget {
@@ -10,6 +11,7 @@ class CreateClient extends StatefulWidget {
 class _CreateClientState extends State<CreateClient> {
   final nameController = TextEditingController();
   final prenomController = TextEditingController();
+  final emailController = TextEditingController();
   final sexeController = TextEditingController();
   final datedenaissanceController = TextEditingController();
   final quartierController = TextEditingController();
@@ -29,6 +31,7 @@ class _CreateClientState extends State<CreateClient> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ajoute un client'),
+        backgroundColor: AppColors.BackBlueColor,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -76,11 +79,29 @@ class _CreateClientState extends State<CreateClient> {
                 height: 10,
               ),
               TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'Entrez Votre Email',
+                    prefixIcon: const Icon(Icons.email),
+                    border: const OutlineInputBorder(),
+                    suffixIcon: nameController.text.isEmpty
+                        ? Container(
+                      width: 0,
+                    )
+                        : IconButton(
+                        onPressed: () => nameController.clear(),
+                        icon: const Icon(Icons.close))),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
                 controller: sexeController,
                 decoration: InputDecoration(
                     labelText: 'Sexe',
                     hintText: 'Choisisez le sexe',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.face),
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
@@ -98,7 +119,7 @@ class _CreateClientState extends State<CreateClient> {
                 decoration: InputDecoration(
                     labelText: 'Date de naissance',
                     hintText: 'Entrez votre date de naissance',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.calendar_month),
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
@@ -116,7 +137,7 @@ class _CreateClientState extends State<CreateClient> {
                 decoration: InputDecoration(
                     labelText: 'Quartier',
                     hintText: 'Entrez Votre Quartier',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.place),
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
@@ -134,7 +155,7 @@ class _CreateClientState extends State<CreateClient> {
                 decoration: InputDecoration(
                     labelText: 'Ville',
                     hintText: 'Entrez Votre ville',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.location_city),
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(

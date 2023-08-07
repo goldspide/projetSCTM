@@ -798,3 +798,12 @@
 //     ],
 //   ),
 // ),
+
+// onChanged: (value){
+//   if (value.isEmpty)
+//     {
+//       setState(() {
+//         nameController.clear();
+//       });
+//     }
+// },

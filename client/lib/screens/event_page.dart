@@ -8,6 +8,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({super.key});
@@ -17,6 +18,14 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
+  final anneeController = TextEditingController();
+  final trimestreController = TextEditingController();
+  final semestreController = TextEditingController();
+  final type_evenementeController = TextEditingController();
+  final type_messageController = TextEditingController();
+  final date_debutController = TextEditingController();
+  final date_finController = TextEditingController();
+  final etat_MessageController = TextEditingController();
   final event = [
     {
       'evenement': 'nouvel ans',
@@ -60,6 +69,23 @@ class _EventPageState extends State<EventPage> {
     },
   ];
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDatePickerMode: DatePickerMode.year,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2030),
+        locale: const Locale("en","US"));
+    if (pickedDate != null){
+      final formattedDate = DateFormat("dd/MM/yyyy").format(pickedDate);
+      setState(() {
+        date_debutController.text = formattedDate;
+        date_finController.text = formattedDate;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final _size = const Size(120, 120);
@@ -69,7 +95,7 @@ class _EventPageState extends State<EventPage> {
         child: Column(
           children: [
             Container(
-              height: _size.height * 3.94,
+              height: _size.height * 3.99,
               decoration: const BoxDecoration(color: AppColors.BackBlueColor),
               child: Column(
                 children: [
@@ -131,61 +157,65 @@ class _EventPageState extends State<EventPage> {
                   const SizedBox(
                     height: 1,
                   ),
-                  Container(
-                    height: _size.height * 1.5,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 25.0, top: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 200,
-                            width: 180,
-                            decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                border: Border.all(color: Colors.transparent),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(top: 4.0, left: 4.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Samedi 1 Janvier 2023',
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Container(
+                      height: _size.height * 1.5,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, bottom: 25.0, top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 200,
+                              width: 180,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  border: Border.all(color: Colors.transparent),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 4.0, left: 4.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Samedi 1 Janvier 2023',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Fete du nouvelle ans',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.OrangColor),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    'Fete du nouvelle ans',
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.OrangColor),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            height: 200,
-                            width: 190,
-                            decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                border: Border.all(color: Colors.black),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(top: 4.0, left: 4.0),
-                              child: Text(
-                                'With your agreement, we and our process personal data like your visit on this website, IP addresses and cookie identifiers. Some partners do not ask for your consent to process your data and rely on',
-                                style: TextStyle(fontSize: 12),
+                            Container(
+                              height: 200,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  border: Border.all(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 4.0, left: 4.0),
+                                child: Text(
+                                  'With your agreement, we and our process personal data like your visit on this website, IP addresses and cookie identifiers. Some partners do not ask for your consent to process your data and rely on',
+                                  style: TextStyle(fontSize: 12),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -217,14 +247,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text('  Semestre')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: semestreController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Semestre',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -238,14 +274,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text('  Trimestre')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: trimestreController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Trimestre',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -258,14 +300,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text('  Type evenement')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: type_evenementeController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Type evenement',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -285,14 +333,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text('  Date Debut')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: date_debutController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Date debut',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -308,14 +362,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text(' Date fin')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: date_finController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Date fin',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -335,14 +395,20 @@ class _EventPageState extends State<EventPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(6)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.calendar_month),
-                                    Text('  Etat Message')
-                                  ],
+                              child: Center(
+                                child: TextField(
+                                  controller: etat_MessageController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Etat message',
+                                    hintStyle: TextStyle(color: Colors.black),
+                                    prefixIcon: Icon(
+                                      Icons.calendar_month,
+                                      color: Colors.black,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -482,7 +548,7 @@ class _EventPageState extends State<EventPage> {
                                               BorderRadius.circular(12),
                                           // color: AppColors.BackBlueColor
                                         ),
-                                        height: 320,
+                                        height: 340,
                                         width: 400,
                                         child: Column(
                                           children: [
