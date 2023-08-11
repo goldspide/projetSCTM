@@ -26,7 +26,11 @@ class AgencyController {
     try {
       final data = agency.asMap();
       final response = await http!.post('agency', data: data);
-      return Agency.fromMap(response.data);
+      if (response.statusCode == 200) {
+        return Agency.fromMap(response.data);
+      } else {
+        return null;
+      }
     } catch (err) {
       print(err);
       return null;

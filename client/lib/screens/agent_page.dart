@@ -1,3 +1,5 @@
+import 'package:client/controllers/agency.dart';
+import 'package:client/models/agency.dart';
 import 'package:client/screens/create_agence.dart';
 import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,6 @@ class _AgentPageState extends State<AgentPage> {
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
     },
-
     {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
@@ -37,7 +38,6 @@ class _AgentPageState extends State<AgentPage> {
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
     },
-
     {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
@@ -47,7 +47,6 @@ class _AgentPageState extends State<AgentPage> {
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
     },
-
     {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
@@ -57,7 +56,6 @@ class _AgentPageState extends State<AgentPage> {
       'quartier': ' Bastos',
       'contact': ' +237 680 401 646',
     },
-
     {
       'responsable': "TAGAKOU Hammel",
       'code': 'WERTCF',
@@ -78,7 +76,6 @@ class _AgentPageState extends State<AgentPage> {
             Padding(
               padding: const EdgeInsets.only(left: 12.0, top: 8),
               child: Container(
-                // color: Colors.yellow,
                 width: size.width,
                 child: Text(
                   'Gestion Des Agence',
@@ -98,9 +95,8 @@ class _AgentPageState extends State<AgentPage> {
                 height: size.height * 0.3,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: AppColors.BackOrangeColor,
-                  borderRadius: BorderRadius.circular(12)
-                ),
+                    color: AppColors.BackOrangeColor,
+                    borderRadius: BorderRadius.circular(12)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -134,7 +130,9 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 15,),
+                          const SizedBox(
+                            width: 15,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -194,7 +192,9 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16,),
+                          const SizedBox(
+                            width: 16,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -254,7 +254,9 @@ class _AgentPageState extends State<AgentPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16,),
+                          const SizedBox(
+                            width: 16,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -380,14 +382,14 @@ class _AgentPageState extends State<AgentPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Responsable',
+                              'Code',
                               style: GoogleFonts.ubuntu(
                                   fontWeight: FontWeight.bold, fontSize: 18),
                             ),
                             const SizedBox(
                               width: 16,
                             ),
-                            Text('Code',
+                            Text('Description',
                                 style: GoogleFonts.ubuntu(
                                     fontWeight: FontWeight.bold, fontSize: 18)),
                             // Text('Description',
@@ -409,232 +411,269 @@ class _AgentPageState extends State<AgentPage> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 height: size.height * 0.38,
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: AppColors.BackBlueColor,
                 ),
-                child: ListView.builder(
-                    itemCount: agence.length,
-                    itemBuilder: (context, index) {
-                      final val = agence[index];
-                      final responsable = val['responsable'];
-                      final code = val['code'];
-                      final description = val['description'];
-                      final quartier = val['quartier'];
-                      final ville = val['ville'];
-                      final region = val['region'];
-                      final contact = val['contact'];
+                child: FutureBuilder(
+                    future: AgencyController.getAll(),
+                    builder: (context, snapshot) {
+                      List<Agency> data = [];
+                      if (snapshot.data != null) {
+                        data = snapshot.data!;
+                      }
+                      return ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            final val = agence[index];
+                            final responsable = val['responsable'];
+                            final code = val['code'];
+                            final description = val['description'];
+                            final quartier = val['quartier'];
+                            final ville = val['ville'];
+                            final region = val['region'];
+                            final contact = val['contact'];
 
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      // color: AppColors.BackBlueColor
-                                    ),
-                                    height: 320,
-                                    width: 400,
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          'Detaile sur l\'agence  a $ville',
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 24),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.only(left: 15.0),
-                                          child: Container(
-                                            width: 360,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  color: Colors.transparent,
-                                                ),
-                                                borderRadius:
-                                                BorderRadius.circular(12)),
-                                            alignment: Alignment.topLeft,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Responsable:   $responsable",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Code :   $code",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Description :   $description",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Region :   $region",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Ville :   $ville",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Quartier :   $quartier",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Contact :   $contact",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                      FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 30,
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 30.0),
-                                                  child: Row(
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          height: 320,
+                                          width: 400,
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                'Detaile sur l\'agence  a $ville',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 24),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 15.0),
+                                                child: Container(
+                                                  width: 360,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color:
+                                                            Colors.transparent,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                  alignment: Alignment.topLeft,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
                                                     children: [
-                                                      Container(
-                                                        height: 40,
-                                                        width: 110,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                            color: Colors.red),
-                                                        child: const Center(
-                                                            child: Text(
-                                                              'Supprimer',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .bold,color: Colors.white),
-                                                            )),
+                                                      Text(
+                                                        "Responsable:   $responsable",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                       const SizedBox(
-                                                        width: 50,
+                                                        height: 10,
                                                       ),
-                                                      Container(
-                                                        height: 40,
-                                                        width: 110,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(50),
-                                                          color: Colors.green,
+                                                      Text(
+                                                        "Code :   $code",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Description :   $description",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Region :   $region",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Ville :   $ville",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Quartier :   $quartier",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Contact :   $contact",
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 30,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 30.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Container(
+                                                              height: 40,
+                                                              width: 110,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  color: Colors
+                                                                      .red),
+                                                              child:
+                                                                  const Center(
+                                                                      child:
+                                                                          Text(
+                                                                'Supprimer',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .white),
+                                                              )),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 50,
+                                                            ),
+                                                            Container(
+                                                              height: 40,
+                                                              width: 110,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50),
+                                                                color: Colors
+                                                                    .green,
+                                                              ),
+                                                              child:
+                                                                  const Center(
+                                                                      child:
+                                                                          Text(
+                                                                'Modifier',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .white),
+                                                              )),
+                                                            ),
+                                                          ],
                                                         ),
-                                                        child: const Center(
-                                                            child: Text(
-                                                              'Modifier',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .bold,color: Colors.white),
-                                                            )),
-                                                      ),
+                                                      )
                                                     ],
                                                   ),
-                                                )
-                                              ],
-                                            ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      showDragHandle: true,
+                                      enableDrag: true,
+                                      backgroundColor: AppColors.BackBlueColor);
+                                },
+                                child: Container(
+                                  height: size.height * 0.05,
+                                  width: size.width * 1,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.BackOrangeColor,
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 25.0, top: 12),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                '${data[index].code}',
+                                                style: GoogleFonts.ubuntu(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontSize: 18),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                showDragHandle: true,
-                                enableDrag: true,
-                                backgroundColor: AppColors.BackBlueColor);
-                          },
-                          child: Container(
-                            height: size.height * 0.05,
-                            width: size.width * 1,
-                            decoration: BoxDecoration(
-                                color: AppColors.BackOrangeColor,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8.0, right: 25.0, top: 12),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          '$responsable',
-                                          style: GoogleFonts.ubuntu(
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 18),
+                                        const SizedBox(
+                                          width: 16,
                                         ),
+                                        Text('${data[index].description}',
+                                            style: GoogleFonts.ubuntu(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 18)),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text('$code',
-                                      style: GoogleFonts.ubuntu(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 18)),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      );
+                            );
+                          });
                     }),
               ),
             ),
