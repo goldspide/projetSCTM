@@ -1,5 +1,9 @@
+import 'package:client/controllers/agency.dart';
+import 'package:client/models/agency.dart';
 import 'package:client/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CreateAgence extends StatefulWidget {
   const CreateAgence({super.key});
@@ -9,13 +13,15 @@ class CreateAgence extends StatefulWidget {
 }
 
 class _CreateAgenceState extends State<CreateAgence> {
-  final responsableController = TextEditingController();
+  // final responsableController = TextEditingController();
   final codeController = TextEditingController();
   final descriptionController = TextEditingController();
-  final regionController = TextEditingController();
+  // final regionController = TextEditingController();
   final quartierController = TextEditingController();
-  final villeController = TextEditingController();
+  // final villeController = TextEditingController();
   final contactController = TextEditingController();
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,21 +38,21 @@ class _CreateAgenceState extends State<CreateAgence> {
               const SizedBox(
                 height: 10,
               ),
-              TextField(
-                controller: responsableController,
-                decoration: InputDecoration(
-                    labelText: 'Responsable',
-                    hintText: 'Entrez le nom du responsable',
-                    prefixIcon: const Icon(Icons.person),
-                    border: const OutlineInputBorder(),
-                    suffixIcon: responsableController.text.isEmpty
-                        ? Container(
-                            width: 0,
-                          )
-                        : IconButton(
-                            onPressed: () => responsableController.clear(),
-                            icon: const Icon(Icons.close))),
-              ),
+              // TextField(
+              //   controller: responsableController,
+              //   decoration: InputDecoration(
+              //       labelText: 'Responsable',
+              //       hintText: 'Entrez le nom du responsable',
+              //       prefixIcon: const Icon(Icons.person),
+              //       border: const OutlineInputBorder(),
+              //       suffixIcon: responsableController.text.isEmpty
+              //           ? Container(
+              //               width: 0,
+              //             )
+              //           : IconButton(
+              //               onPressed: () => responsableController.clear(),
+              //               icon: const Icon(Icons.close))),
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -86,21 +92,21 @@ class _CreateAgenceState extends State<CreateAgence> {
               const SizedBox(
                 height: 10,
               ),
-              TextField(
-                controller: regionController,
-                decoration: InputDecoration(
-                    labelText: 'Region',
-                    hintText: 'Entrez la region',
-                    prefixIcon: const Icon(Icons.app_registration_outlined),
-                    border: const OutlineInputBorder(),
-                    suffixIcon: regionController.text.isEmpty
-                        ? Container(
-                            width: 0,
-                          )
-                        : IconButton(
-                            onPressed: () => regionController.clear(),
-                            icon: const Icon(Icons.close))),
-              ),
+              // TextField(
+              //   controller: regionController,
+              //   decoration: InputDecoration(
+              //       labelText: 'Region',
+              //       hintText: 'Entrez la region',
+              //       prefixIcon: const Icon(Icons.app_registration_outlined),
+              //       border: const OutlineInputBorder(),
+              //       suffixIcon: regionController.text.isEmpty
+              //           ? Container(
+              //               width: 0,
+              //             )
+              //           : IconButton(
+              //               onPressed: () => regionController.clear(),
+              //               icon: const Icon(Icons.close))),
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -122,21 +128,21 @@ class _CreateAgenceState extends State<CreateAgence> {
               const SizedBox(
                 height: 10,
               ),
-              TextField(
-                controller: villeController,
-                decoration: InputDecoration(
-                    labelText: 'Ville',
-                    hintText: 'Entrez Votre ville',
-                    prefixIcon: const Icon(Icons.location_city),
-                    border: const OutlineInputBorder(),
-                    suffixIcon: villeController.text.isEmpty
-                        ? Container(
-                            width: 0,
-                          )
-                        : IconButton(
-                            onPressed: () => villeController.clear(),
-                            icon: const Icon(Icons.close))),
-              ),
+              // TextField(
+              //   controller: villeController,
+              //   decoration: InputDecoration(
+              //       labelText: 'Ville',
+              //       hintText: 'Entrez Votre ville',
+              //       prefixIcon: const Icon(Icons.location_city),
+              //       border: const OutlineInputBorder(),
+              //       suffixIcon: villeController.text.isEmpty
+              //           ? Container(
+              //               width: 0,
+              //             )
+              //           : IconButton(
+              //               onPressed: () => villeController.clear(),
+              //               icon: const Icon(Icons.close))),
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -163,6 +169,9 @@ class _CreateAgenceState extends State<CreateAgence> {
                   padding: const EdgeInsets.only(left: 45),
                   child: Row(
                     children: [
+                      if (isLoading)
+                        const Center(
+                            child: CupertinoActivityIndicator(radius: 18)),
                       Container(
                         height: 40,
                         width: 110,
@@ -179,19 +188,49 @@ class _CreateAgenceState extends State<CreateAgence> {
                       const SizedBox(
                         width: 50,
                       ),
-                      Container(
-                        height: 40,
-                        width: 110,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.green,
+                      InkWell(
+                        onTap: () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          Agency agency = Agency(
+                              code: codeController.text,
+                              description: descriptionController.text,
+                              phone: contactController.text,
+                              address: quartierController.text);
+                          try {
+                            await AgencyController.create(agency);
+                            setState(() {
+                              codeController.clear();
+                              descriptionController.clear();
+                              quartierController.clear();
+                              contactController.clear();
+                            });
+                            Fluttertoast.showToast(
+                                msg: "Enregistrement effectué !");
+                          } catch (e) {
+                            print(e);
+                          } finally {
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 110,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.green,
+                          ),
+                          child: const Center(
+                              child: Text(
+                            'Enregistrer',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          )),
                         ),
-                        child: const Center(
-                            child: Text(
-                          'Enregistre',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
-                        )),
                       ),
                     ],
                   ),

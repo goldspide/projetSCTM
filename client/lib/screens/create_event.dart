@@ -20,12 +20,6 @@ class _CreateEventState extends State<CreateEvent> {
   bool isPasswordVisible = false;
 
   @override
-  void iniState() {
-    super.initState();
-    nameController.addListener(() => setState(() {}));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -50,11 +44,11 @@ class _CreateEventState extends State<CreateEvent> {
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => nameController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => nameController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -68,11 +62,11 @@ class _CreateEventState extends State<CreateEvent> {
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => nameController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => nameController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -86,11 +80,11 @@ class _CreateEventState extends State<CreateEvent> {
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => nameController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => nameController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               const SizedBox(
                 height: 10,
@@ -104,11 +98,11 @@ class _CreateEventState extends State<CreateEvent> {
                     border: const OutlineInputBorder(),
                     suffixIcon: nameController.text.isEmpty
                         ? Container(
-                      width: 0,
-                    )
+                            width: 0,
+                          )
                         : IconButton(
-                        onPressed: () => nameController.clear(),
-                        icon: const Icon(Icons.close))),
+                            onPressed: () => nameController.clear(),
+                            icon: const Icon(Icons.close))),
               ),
               // const SizedBox(
               //   height: 10,
@@ -162,9 +156,10 @@ class _CreateEventState extends State<CreateEvent> {
                             color: Colors.red),
                         child: const Center(
                             child: Text(
-                              'Annuler',
-                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
-                            )),
+                          'Annuler',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        )),
                       ),
                       const SizedBox(
                         width: 50,
@@ -178,9 +173,10 @@ class _CreateEventState extends State<CreateEvent> {
                         ),
                         child: const Center(
                             child: Text(
-                              'Enregistre',
-                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
-                            )),
+                          'Enregistre',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        )),
                       ),
                     ],
                   ),

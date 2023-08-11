@@ -46,7 +46,7 @@ class User {
         '_id': id,
         'fullName': fullName,
         'gender': gender,
-        'dateofBirth': dateofBirth,
+        'dateofBirth': dateofBirth!.toIso8601String(),
         'quater': quater,
         'city': city,
         'email': email,

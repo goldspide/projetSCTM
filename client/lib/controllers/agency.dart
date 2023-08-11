@@ -1,7 +1,7 @@
 import 'package:client/config/core.dart';
 import 'package:client/models/agency.dart';
 
-class AgenceController {
+class AgencyController {
   static Future<Agency?> getById(String agencyId) async {
     try {
       final response = await http!.get('agency/$agencyId');
