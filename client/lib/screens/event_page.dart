@@ -1,7 +1,4 @@
-import 'package:circular_chart_flutter/circular_chart_flutter.dart';
-import 'package:client/screens/create_client.dart';
-import 'package:client/screens/create_event.dart';
-import 'package:client/screens/dashboard.dart';
+import 'package:client/screens/view.dart';
 import 'package:client/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -30,23 +27,23 @@ class _EventPageState extends State<EventPage> {
     {
       'evenement': 'nouvel ans',
       'date': '01-01-2023',
-      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'date et heure d\' d\' envois': '01-01-2023 a 00h:00min',
       'etat': 'envoie',
       'etat message': 'sauvegarde',
       'type message': 'mail'
     },
     {
-      'evenement': 'nouvel ans',
-      'date': '01-01-2023',
-      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
-      'etat': 'en attente',
+      'evenement': 'paque',
+      'date': '31-03-2023',
+      'date et heure d\' d\' envois': '31-03-2023 a 00h:00min',
+      'etat': 'envoie',
       'etat message': 'sauvegarde',
       'type message': 'mail'
     },
     {
-      'evenement': 'nouvel ans',
-      'date': '01-01-2023',
-      'date et heure d\' d\' envois': '01-01-2023 a 12h: 33min',
+      'evenement': 'ramadan',
+      'date': '08-05-2023',
+      'date et heure d\' d\' envois': '08-05-2023 a 00h:00min',
       'etat': 'envoie',
       'etat message': 'brouillon',
       'type message': 'mail'
@@ -775,7 +772,7 @@ class _EventPageState extends State<EventPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const CreateEvent()),
+            MaterialPageRoute(builder: (context) =>  EmailScheduler()),
           );
         },
         child: const Icon(Icons.add),
