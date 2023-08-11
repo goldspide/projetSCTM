@@ -5,7 +5,7 @@ class NotificationController {
   static Future<Notification?> getById(String nId) async {
     try {
       final response = await http!.get('notification/$nId');
-      return Notification.fromMap(response.data['datas']);
+      return Notification.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
@@ -15,7 +15,7 @@ class NotificationController {
   static Future<List<Notification>?> getAll() async {
     try {
       final response = await http!.get('notification');
-      return (response.data['datas'] as List)
+      return (response.data as List)
           .map((e) => Notification.fromMap(e))
           .toList();
     } catch (err) {
@@ -28,7 +28,7 @@ class NotificationController {
     try {
       final data = notification.asMap();
       final response = await http!.post('notification', data: data);
-      return Notification.fromMap(response.data['datas']);
+      return Notification.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;

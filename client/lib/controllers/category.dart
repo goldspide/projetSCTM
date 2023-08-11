@@ -5,7 +5,7 @@ class CategoryController {
   static Future<Category?> getById(String catId) async {
     try {
       final response = await http!.get('category/$catId');
-      return Category.fromMap(response.data['datas']);
+      return Category.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
@@ -15,9 +15,7 @@ class CategoryController {
   static Future<List<Category>?> getAll() async {
     try {
       final response = await http!.get('category');
-      return (response.data['datas'] as List)
-          .map((e) => Category.fromMap(e))
-          .toList();
+      return (response.data as List).map((e) => Category.fromMap(e)).toList();
     } catch (err) {
       print(err);
       return null;
@@ -28,7 +26,7 @@ class CategoryController {
     try {
       final data = category.asMap();
       final response = await http!.post('category', data: data);
-      return Category.fromMap(response.data['datas']);
+      return Category.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;

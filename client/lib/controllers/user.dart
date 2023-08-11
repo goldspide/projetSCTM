@@ -5,7 +5,7 @@ class UserController {
   static Future<User?> getById(String userId) async {
     try {
       final response = await http!.get('user/$userId');
-      return User.fromMap(response.data['datas']);
+      return User.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
@@ -15,9 +15,7 @@ class UserController {
   static Future<List<User>?> getAll() async {
     try {
       final response = await http!.get('user');
-      return (response.data['datas'] as List)
-          .map((e) => User.fromMap(e))
-          .toList();
+      return (response.data as List).map((e) => User.fromMap(e)).toList();
     } catch (err) {
       print(err);
       return null;
@@ -28,7 +26,7 @@ class UserController {
     try {
       final data = user.asMap();
       final response = await http!.post('user', data: data);
-      return User.fromMap(response.data['datas']);
+      return User.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;

@@ -5,7 +5,7 @@ class EventsController {
   static Future<Event?> getById(String eventId) async {
     try {
       final response = await http!.get('event/$eventId');
-      return Event.fromMap(response.data['datas']);
+      return Event.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
@@ -15,9 +15,7 @@ class EventsController {
   static Future<List<Event>?> getAll() async {
     try {
       final response = await http!.get('event');
-      return (response.data['datas'] as List)
-          .map((e) => Event.fromMap(e))
-          .toList();
+      return (response.data as List).map((e) => Event.fromMap(e)).toList();
     } catch (err) {
       print(err);
       return null;
@@ -28,7 +26,7 @@ class EventsController {
     try {
       final data = event.asMap();
       final response = await http!.post('event', data: data);
-      return Event.fromMap(response.data['datas']);
+      return Event.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;

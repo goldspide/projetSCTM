@@ -5,7 +5,7 @@ class UemplateController {
   static Future<Template?> getById(String templateId) async {
     try {
       final response = await http!.get('template/$templateId');
-      return Template.fromMap(response.data['datas']);
+      return Template.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
@@ -27,9 +27,7 @@ class UemplateController {
   static Future<List<Template>?> getAll() async {
     try {
       final response = await http!.get('template');
-      return (response.data['datas'] as List)
-          .map((e) => Template.fromMap(e))
-          .toList();
+      return (response.data as List).map((e) => Template.fromMap(e)).toList();
     } catch (err) {
       print(err);
       return null;
@@ -40,7 +38,7 @@ class UemplateController {
     try {
       final data = temp.asMap();
       final response = await http!.post('template', data: data);
-      return Template.fromMap(response.data['datas']);
+      return Template.fromMap(response.data);
     } catch (err) {
       print(err);
       return null;
